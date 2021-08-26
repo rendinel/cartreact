@@ -3,7 +3,9 @@ import CartItem from './CartItem'
 import { useGlobalContext } from './context'
 
 const CartContainer = () => {
-  const { cart } = useGlobalContext()
+  //{1} we import the cart,total value from our initial state in context.js
+  const { cart, total, clearCart } = useGlobalContext()
+  //{2} if the lenght of the array cart is equal to 0 we will display this section
   if (cart.length === 0) {
     return (
       <section className='cart'>
@@ -32,13 +34,10 @@ const CartContainer = () => {
         <hr />
         <div className='cart-total'>
           <h4>
-            total <span>$0.00</span>
+            total <span>${total}</span>
           </h4>
         </div>
-        <button
-          className='btn clear-btn'
-          onClick={() => console.log('clear cart')}
-        >
+        <button className='btn clear-btn' onClick={clearCart}>
           clear cart
         </button>
       </footer>
